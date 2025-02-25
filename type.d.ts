@@ -1,0 +1,4 @@
+interface ProductsType {
+rand:string;
+
+}[]
