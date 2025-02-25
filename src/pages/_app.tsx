@@ -1,10 +1,13 @@
+import RootLayout from "@/Components/RootLayout";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return(
+  return (
     <div className="font-bodyFont">
-      <Component {...pageProps} />
-    </div> 
-);
+      <RootLayout>
+        <Component {...pageProps} />
+      </RootLayout>
+    </div>
+  );
 }

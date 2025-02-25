@@ -1,16 +1,17 @@
 import Image from "next/image";
-import logo from "../images/logo.png";
-import cartIcon from "../images/cartIcon.png";
+import logo from "../../images/logo.png";
+import cartIcon from "../../images/cartIcon.png";
 import { SlLocationPin } from "react-icons/sl";
 import { HiOutlineSearch } from "react-icons/hi";
 import { BiCaretDown } from "react-icons/bi";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <div className="px-4 h-20 bg-amazon_blue sticky top-0 z-50 text-lightText flex justify-between items-center gap-2 mdl:gap-5">
       {/* logo */}
-      <a
-        href="#"
+      <Link
+        href="/"
         className="text-xs duration-300 border border-transparent pt-2 px-2 flex items-center justify-center gap-1 hover:border-white"
       >
         <Image
@@ -20,7 +21,7 @@ const Header = () => {
           height={42}
           alt="Logo image"
         />
-      </a>
+      </Link>
 
       {/* delivery */}
       <div className="cursor-pointer duration-300 border border-transparent py-1 px-2 hidden items-center justify-center gap-1 hover:border-white xl:inline-flex">
@@ -61,7 +62,7 @@ const Header = () => {
       </div>
 
       {/* cart */}
-      <div className="flex items-center cursor-pointer text-xs duration-300 h-[70%] border border-transparent py-1 px-2 gap-1 hover:border-white relative">
+      <Link href={"/cart"} className="flex items-center cursor-pointer text-xs duration-300 h-[70%] border border-transparent py-1 px-2 gap-1 hover:border-white relative">
         <Image
           className="object-cover"
           src={cartIcon}
@@ -73,7 +74,7 @@ const Header = () => {
         <span className="absolute text-amazon_yellow text-sm top-2 left-[29px] font-semibold">
           0
         </span>
-      </div>
+      </Link>
     </div>
   );
 };
