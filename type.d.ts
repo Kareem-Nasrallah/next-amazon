@@ -21,3 +21,15 @@ export interface ProductCartType {
   _id: number;
   quantity: number;
 }
+
+export interface stateType {
+  store: {
+    cart: {
+      cartProducts: ProductCartType[];
+      allProducts: [];
+    };
+    favorite: { favoriteData: ProductType[] };
+    user: { userInfo: null | string };
+    // cart:{},
+  };
+}

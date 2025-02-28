@@ -1,9 +1,9 @@
 import Banner from "@/Components/Banner";
 import Products from "@/Components/Products";
-import ProductsType from "../../type";
+import { ProductType } from "../../type";
 
 interface PropsType {
-  productData: ProductsType[];
+  productData: ProductType[];
 }
 export default function Home({ productData }: PropsType) {
   console.log(productData);
