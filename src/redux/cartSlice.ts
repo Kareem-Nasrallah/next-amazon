@@ -1,16 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import ProductsType from "../../type";
+import { ProductCartType } from "../../type";
 
 interface initialStateTyp {
-  productData: ProductsType[];
-  favoritData: ProductsType[];
-  allProducts: ProductsType[];
-  userInfo: null;
+  cartProducts: ProductCartType[];
+  allProducts: ProductCartType[];
+  userInfo: null | string;
 }
 
 const initialState: initialStateTyp = {
-  productData: [],
-  favoritData: [],
+  cartProducts: [],
   allProducts: [],
   userInfo: null,
 };
@@ -19,13 +17,27 @@ const cartSlice = createSlice({
   name: "cartSlice",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<ProductsType>) => {
-      const isExistingProduct = state.productData.findIndex(
-        (x) => x._id == action.payload._id
+    addToCart: (state, action: PayloadAction<ProductCartType>) => {
+      const existingProduct = state.cartProducts.find(
+        (x: ProductCartType) => x._id == action.payload._id
       );
-      isExistingProduct
-        ? state.productData[isExistingProduct].quantity++
-         : state.productData.push(action.payload);
+      existingProduct
+        ? (existingProduct.quantity += action.payload.quantity)
+        : state.cartProducts.push(action.payload);
+    },
+    decreaseQuantity: (state, action: PayloadAction<ProductCartType>) => {
+      const existingProduct = state.cartProducts.find(
+        (x: ProductCartType) => x._id == action.payload._id
+      );
+      existingProduct?.quantity == 1
+        ? (existingProduct.quantity = 1)
+        : existingProduct!.quantity--;
+    },
+    deleteProduct: (state, action: PayloadAction<ProductCartType>) => {
+      const existingProduct = state.cartProducts.find(
+        (x: ProductCartType) => x._id == action.payload._id
+      );
+      state.cartProducts;
     },
   },
 });

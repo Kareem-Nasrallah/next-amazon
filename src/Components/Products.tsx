@@ -1,13 +1,14 @@
 import React from "react";
-import ProductsType from "../../type";
+import { ProductType } from "../../type";
 import Image from "next/image";
 import { HiShoppingCart } from "react-icons/hi";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { cartActions } from "@/redux/cartSlice";
+import { favoriteActions } from "@/redux/favoriteSlice";
 
 interface PropsType {
-  productData: ProductsType[];
+  productData: ProductType[];
 }
 
 const Products = ({ productData }: PropsType) => {
@@ -46,7 +47,14 @@ const Products = ({ productData }: PropsType) => {
               <p className="flex justify-center items-center w-full h-full border-b border-gray-400 hover:bg-amazon_yellow cursor-pointer duration-300">
                 <HiShoppingCart className="text-2xl" />
               </p>
-              <p className="flex justify-center items-center w-full h-full hover:bg-amazon_yellow cursor-pointer duration-300">
+              <p
+                onClick={() =>
+                  dispatch(
+                    favoriteActions.addToFavorit({ ...product, quantity: 1 })
+                  )
+                }
+                className="flex justify-center items-center w-full h-full hover:bg-amazon_yellow cursor-pointer duration-300"
+              >
                 <FaHeart />
               </p>
             </div>
@@ -66,7 +74,9 @@ const Products = ({ productData }: PropsType) => {
               {product.description.substring(0, 120)}...
             </p>
             <button
-              onClick={() => dispatch(cartActions.addToCart(product))}
+              onClick={() =>
+                dispatch(cartActions.addToCart({ ...product, quantity: 1 }))
+              }
               className="bg-amazon_blue font-bold w-full h-10 text-white rounded-md mt-4 hover:bg-amazon_yellow hover:text-black duration-300"
             >
               add to cart
