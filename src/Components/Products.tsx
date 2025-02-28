@@ -40,10 +40,7 @@ const Products = ({ productData }: PropsType) => {
               height={300}
               alt={product.title}
             />
-            <div
-              className="border border-gray-400 rounded-md w-12 h-20 flex flex-col items-center justify-center
-                        backdrop-blur-md absolute -right-12 top-[50%] -translate-y-[50%] duration-300 group-hover:right-0"
-            >
+            <div className="border border-gray-400 rounded-md w-12 h-20 flex flex-col items-center justify-center backdrop-blur-md absolute -right-12 top-[50%] -translate-y-[50%] duration-300 group-hover:right-0">
               <p
                 onClick={() =>
                   dispatch(cartActions.addToCart({ ...product, quantity: 1 }))
@@ -53,11 +50,7 @@ const Products = ({ productData }: PropsType) => {
                 <HiShoppingCart className="text-2xl" />
               </p>
               <p
-                onClick={() =>
-                  dispatch(
-                    favoriteActions.addToFavorit({ ...product, quantity: 1 })
-                  )
-                }
+                onClick={() => dispatch(favoriteActions.addToFavorit(product))}
                 className="flex justify-center items-center w-full h-full hover:bg-amazon_yellow cursor-pointer duration-300"
               >
                 <FaHeart />

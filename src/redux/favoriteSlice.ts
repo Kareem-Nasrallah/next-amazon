@@ -1,33 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductCartType } from "../../type";
+import { ProductType } from "../../type";
 
 interface initialStateTyp {
-  favoritData: ProductCartType[];
+  favoriteData: ProductType[];
 }
 
 const initialState: initialStateTyp = {
-  favoritData: [],
+  favoriteData: [],
 };
 
 const favoriteSlice = createSlice({
   name: "favoriteSlice",
   initialState,
   reducers: {
-    addToFavorit: (state, action: PayloadAction<ProductCartType>) => {
-      const existingProduct = state.favoritData.find(
-        (x: ProductCartType) => x._id == action.payload._id
+    addToFavorit: (state, action: PayloadAction<ProductType>) => {
+      
+      const existingProduct = state.favoriteData.find(
+        (x: ProductType) => x._id == action.payload._id
       );
-      existingProduct
-        ? (existingProduct.quantity += action.payload.quantity)
-        : state.favoritData.push(action.payload);
-    },
-    decreaseQuantity: (state, action: PayloadAction<ProductCartType>) => {
-      const existingProduct = state.favoritData.find(
-        (x: ProductCartType) => x._id == action.payload._id
-      );
-      existingProduct?.quantity == 1
-        ? (existingProduct.quantity = 1)
-        : existingProduct!.quantity--;
+      !existingProduct && state.favoriteData.push(action.payload);
     },
   },
 });

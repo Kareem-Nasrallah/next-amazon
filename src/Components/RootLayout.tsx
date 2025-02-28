@@ -12,7 +12,7 @@ const RootLayout: React.FC<propsType> = ({ children }) => {
     <>
       <Header />
       <BottomHeader />
-      <div>{children}</div>
+      <div className="bg-gray-300">{children}</div>
       <Footer />
     </>
   );

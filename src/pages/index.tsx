@@ -9,7 +9,7 @@ export default function Home({ productData }: PropsType) {
   console.log(productData);
   return (
     <>
-      <main className="bg-gray-300">
+      <main>
         <div className="max-w-screen-2xl mx-auto">
           <Banner />
           <div className="relative z-20 md:-mt-20 lgl:-mt-32 xl:-mt-60 mb-10">

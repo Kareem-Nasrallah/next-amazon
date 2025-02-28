@@ -19,7 +19,8 @@ const Header = () => {
       0
     );
   };
-
+  console.log(favorite)
+  
   return (
     <div className="px-4 h-20 bg-amazon_blue sticky top-0 z-50 text-lightText flex justify-between items-center gap-2 mdl:gap-5">
       {/* logo */}
@@ -69,9 +70,14 @@ const Header = () => {
       </div>
 
       {/* Favorite */}
-      <div className="text-xs text-gray-100 flex flex-col justify-center px-2  border border-transparent hover:border-white cursor-pointer h-[70%] duration-300">
+      <div className="relative text-xs text-gray-100 flex flex-col justify-center px-2  border border-transparent hover:border-white cursor-pointer h-[70%] duration-300">
         <p>Marked</p>
         <p className="text-white font-bold">& Favorite</p>
+        {favorite.favoriteData?.length === 0 ? (
+          ""
+        ) : (
+          <span className="absolute right-2 top-2 w-4 h-4 border border-gray-400 flex justify-center items-center text-amazon_yellow">{favorite.favoriteData?.length}</span>
+        )}
       </div>
 
       {/* cart */}
