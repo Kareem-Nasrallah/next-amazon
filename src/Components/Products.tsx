@@ -44,7 +44,12 @@ const Products = ({ productData }: PropsType) => {
               className="border border-gray-400 rounded-md w-12 h-20 flex flex-col items-center justify-center
                         backdrop-blur-md absolute -right-12 top-[50%] -translate-y-[50%] duration-300 group-hover:right-0"
             >
-              <p className="flex justify-center items-center w-full h-full border-b border-gray-400 hover:bg-amazon_yellow cursor-pointer duration-300">
+              <p
+                onClick={() =>
+                  dispatch(cartActions.addToCart({ ...product, quantity: 1 }))
+                }
+                className="flex justify-center items-center w-full h-full border-b border-gray-400 hover:bg-amazon_yellow cursor-pointer duration-300"
+              >
                 <HiShoppingCart className="text-2xl" />
               </p>
               <p

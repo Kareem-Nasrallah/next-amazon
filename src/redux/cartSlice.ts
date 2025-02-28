@@ -4,13 +4,11 @@ import { ProductCartType } from "../../type";
 interface initialStateTyp {
   cartProducts: ProductCartType[];
   allProducts: ProductCartType[];
-  userInfo: null | string;
 }
 
 const initialState: initialStateTyp = {
   cartProducts: [],
   allProducts: [],
-  userInfo: null,
 };
 
 const cartSlice = createSlice({
@@ -35,9 +33,14 @@ const cartSlice = createSlice({
     },
     deleteProduct: (state, action: PayloadAction<ProductCartType>) => {
       const existingProduct = state.cartProducts.find(
-        (x: ProductCartType) => x._id == action.payload._id
+        (product: ProductCartType) => product._id == action.payload._id
       );
-      state.cartProducts;
+      state.cartProducts.filter(
+        (product: ProductCartType) => product._id !== existingProduct!._id
+      );
+    },
+    resetCart: (state) => {
+      state.cartProducts = [];
     },
   },
 });
