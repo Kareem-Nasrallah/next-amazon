@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ProductCartType, stateType } from "../../type";
 import Link from "next/link";
-import Image from "next/image";
+import CartProduct from "@/Components/CartProduct";
 
 const Cart = () => {
   const { cartProducts } = useSelector((state: stateType) => state.store.cart);
 
   return (
-    <div className="max-w-2xl mx-auto px-6 grid grid-cols-5 gap-10 py-4">
+    <div className="max-w-screen-2xl mx-auto px-6 grid grid-cols-5 gap-10 py-4">
       {cartProducts.length > 0 ? (
         <>
           <div className="bg-white  col-span-4 p-4 rounded-lg">
@@ -20,19 +20,8 @@ const Cart = () => {
             </div>
             <div className="flex flex-col justify-center items-center">
               {cartProducts.map((product: ProductCartType) => (
-                <div key={product._id} className="pt-2 flex gap-2 bg-gray-100">
-                  <Image
-                    src={product.image}
-                    alt={product.title + "'s photo"}
-                    width={200}
-                    height={300}
-                  />
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-amazon_blue text-lg font-semibold">{product.title}</h3>
-                    <p className="text-gray-500">{product.description}</p>
-                    <p className="text-gray-500">Unit Price ${product.price}</p>
-                    <div></div>
-                  </div>
+                <div key={product._id} className="pt-2 flex gap-2 flex-col">
+                  <CartProduct product={product} />
                 </div>
               ))}
             </div>
