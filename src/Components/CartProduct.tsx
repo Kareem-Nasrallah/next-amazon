@@ -2,10 +2,14 @@ import Image from "next/image";
 import React from "react";
 import { ProductCartType } from "../../type";
 import { LuMinus, LuPlus } from "react-icons/lu";
+import { IoMdClose } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/redux/cartSlice";
 
 const CartProduct = ({ product }: { product: ProductCartType }) => {
+  const dispatch = useDispatch();
   return (
-    <div className="bg-gray-100 rounded-lg flex items-start gap-4">
+    <div className="py-4 bg-gray-100 rounded-lg flex items-start gap-4">
       <Image
         src={product.image}
         alt={product.title + "'s photo"}
@@ -25,12 +29,34 @@ const CartProduct = ({ product }: { product: ProductCartType }) => {
               ${product.price.toFixed(2)}
             </span>
           </p>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center justify-between w-28 px-4 py-1 mt-1 border rounded-full border-gray-300 shadow-lg shadow-gray-300">
+              <span
+                className="w-6 h-6 flex items-center justify-center cursor-pointer hover:bg-gray-300 rounded-full"
+                onClick={() => dispatch(cartActions.addToCart(product))}
+              >
+                {<LuPlus />}
+              </span>
+              <span className="w-6 h-6 flex items-center justify-center rounded-full">
+                {product.quantity}
+              </span>
+              <span
+                className="w-6 h-6 flex items-center justify-center cursor-pointer hover:bg-gray-300 rounded-full"
+                onClick={() => dispatch(cartActions.decreaseQuantity(product))}
+              >
+                {<LuMinus />}
+              </span>
+            </div>
+            <div
+              className="flex items-center gap-0.5 text-sm font-medium text-gray-400 cursor-pointer hover:text-red-600 duration-300"
+              onClick={() => dispatch(cartActions.deleteProduct(product))}
+            >
+              <IoMdClose className="mt-0.5" /> <p>remove</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <div>
-            <span>{LuMinus}</span>
-            <span>{LuPlus}</span>
-          </div> 
+        <div className="text-lg font-semibold text-amazon_blue">
+          ${(product.price * product.quantity).toFixed(2)}
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ const cartSlice = createSlice({
         (x: ProductCartType) => x._id == action.payload._id
       );
       existingProduct
-        ? (existingProduct.quantity += action.payload.quantity)
+        ? existingProduct.quantity++
         : state.cartProducts.push(action.payload);
     },
     decreaseQuantity: (state, action: PayloadAction<ProductCartType>) => {
@@ -35,7 +35,7 @@ const cartSlice = createSlice({
       const existingProduct = state.cartProducts.find(
         (product: ProductCartType) => product._id == action.payload._id
       );
-      state.cartProducts.filter(
+      state.cartProducts = state.cartProducts.filter(
         (product: ProductCartType) => product._id !== existingProduct!._id
       );
     },
