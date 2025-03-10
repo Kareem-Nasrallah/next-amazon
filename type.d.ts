@@ -29,7 +29,10 @@ export interface stateType {
       allProducts: [];
     };
     favorite: { favoriteData: ProductType[] };
-    user: { userInfo: null | string };
-    // cart:{},
+    user: {
+      name: undefined | null | string;
+      email: undefined | null | string;
+      image: undefined | null | string;
+    };
   };
 }

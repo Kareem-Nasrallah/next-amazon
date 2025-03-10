@@ -6,7 +6,7 @@ interface PropsType {
   productData: ProductType[];
 }
 export default function Home({ productData }: PropsType) {
-  console.log(productData);
+
   return (
     <>
       <main>

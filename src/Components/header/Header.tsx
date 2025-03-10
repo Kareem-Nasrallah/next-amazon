@@ -5,22 +5,34 @@ import { SlLocationPin } from "react-icons/sl";
 import { HiOutlineSearch } from "react-icons/hi";
 import { BiCaretDown } from "react-icons/bi";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { stateType } from "../../../type";
+import { useSession, signIn } from "next-auth/react";
+import { useEffect } from "react";
+import { userActions } from "@/redux/userSlice";
 
 const Header = () => {
-  const { cart, favorite } = useSelector(
+  const { data: session } = useSession();
+
+  console.log(session);
+
+  const { cart, favorite, user } = useSelector(
     (allStoreData: stateType) => allStoreData.store
   );
 
-  const allProductsQuantity = () => {
-    return cart.cartProducts.reduce(
-      (sum, product) => (sum += product.quantity),
-      0
-    );
-  };
-  console.log(favorite)
-  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (session) {
+      dispatch(
+        userActions.addUser({
+          name: session?.user?.name,
+          email: session?.user?.email,
+          image: session?.user?.image,
+        })
+      );
+    }
+  }, [session]);
+
   return (
     <div className="px-4 h-20 bg-amazon_blue sticky top-0 z-50 text-lightText flex justify-between items-center gap-2 mdl:gap-5">
       {/* logo */}
@@ -59,15 +71,28 @@ const Header = () => {
       </div>
 
       {/* Signin */}
-      <div className="text-xs text-gray-100 flex flex-col justify-center px-2  border border-transparent hover:border-white cursor-pointer h-[70%] duration-300">
-        <p>Hello, sign in</p>
-        <p className="gap-0.5 text-white font-bold flex items-center">
-          Account & Lists
-          <span>
-            <BiCaretDown />
-          </span>
-        </p>
-      </div>
+      {session ? (
+        <div className="text-xs flex items-center px-2 border border-transparent hover:border-white cursor-pointer h-[70%] gap-1 duration-300">
+          <img src={user.image!} alt="User Image" className="w-8 h-8 rounded-full object-cover" />
+          <div className="text-gray-100 flex flex-col justify-center ">
+            <p className="text-white font-bold">{user.name}</p>
+            <p>{user.email}</p>
+          </div>
+        </div>
+      ) : (
+        <div
+          className="text-xs text-gray-100 flex flex-col justify-center px-2  border border-transparent hover:border-white cursor-pointer h-[70%] duration-300"
+          onClick={() => signIn()}
+        >
+          <p>Hello, sign in</p>
+          <p className="gap-0.5 text-white font-bold flex items-center">
+            Account & Lists
+            <span>
+              <BiCaretDown />
+            </span>
+          </p>
+        </div>
+      )}
 
       {/* Favorite */}
       <div className="relative text-xs text-gray-100 flex flex-col justify-center px-2  border border-transparent hover:border-white cursor-pointer h-[70%] duration-300">
@@ -76,7 +101,9 @@ const Header = () => {
         {favorite.favoriteData?.length === 0 ? (
           ""
         ) : (
-          <span className="absolute right-2 top-2 w-4 h-4 border border-gray-400 flex justify-center items-center text-amazon_yellow">{favorite.favoriteData?.length}</span>
+          <span className="absolute right-2 top-2 w-4 h-4 border border-gray-400 flex justify-center items-center text-amazon_yellow">
+            {favorite.favoriteData?.length}
+          </span>
         )}
       </div>
 
@@ -94,7 +121,7 @@ const Header = () => {
         />
         <p className="text-xs text-white font-bold mt-3">cart</p>
         <span className="absolute text-amazon_yellow text-sm top-2 left-[29px] font-semibold">
-          {allProductsQuantity()}
+          {cart.cartProducts.length}
         </span>
       </Link>
     </div>

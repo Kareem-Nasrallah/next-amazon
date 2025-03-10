@@ -1,22 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface initialStateType {
-  userInfo: null | string;
+  name: undefined | null | string;
+  email: undefined | null | string;
+  image: undefined | null | string;
 }
 
 const initialState: initialStateType = {
-  userInfo: null,
+  name: null,
+  email: null,
+  image: null,
 };
 
 const userSlice = createSlice({
   name: "userSlice",
   initialState,
   reducers: {
-    addUser: (state, action: PayloadAction<string>) => {
-      state.userInfo = action.payload;
+    addUser: (state, action: PayloadAction<initialStateType>) => {
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+      state.image = action.payload.image;
     },
     removeUser: (state) => {
-      state.userInfo = null;
+      state.name = null;
+      state.email = null;
+      state.image = null;
     },
   },
 });

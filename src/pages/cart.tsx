@@ -18,7 +18,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-6 grid grid-cols-5 gap-10 py-4">
+    <div className="max-w-screen-2xl mx-auto px-6 grid gap-10 py-4 grid-cols-[1fr_1fr_1fr_1fr_200px] xl:grid-cols-[1fr_1fr_1fr_1fr_300px] ">
       {cartProducts.length > 0 ? (
         <>
           <div className="bg-white  col-span-4 p-4 rounded-lg">
@@ -44,8 +44,8 @@ const Cart = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white sticky top-24 h-64 col-span-1 p-4 rounded-lg flex items-center justify-center">
-              <CartPayment/>
+          <div className="bg-white sticky top-24 h-64 p-4 rounded-lg flex items-center justify-center">
+            <CartPayment />
           </div>
         </>
       ) : (
