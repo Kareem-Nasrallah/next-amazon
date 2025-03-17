@@ -14,11 +14,21 @@ const favoriteSlice = createSlice({
   initialState,
   reducers: {
     addToFavorit: (state, action: PayloadAction<ProductType>) => {
-      
       const existingProduct = state.favoriteData.find(
         (x: ProductType) => x._id == action.payload._id
       );
       !existingProduct && state.favoriteData.push(action.payload);
+    },
+    removeFavProduct: (state, action: PayloadAction<ProductType>) => {
+      const existingProduct = state.favoriteData.find(
+        (product: ProductType) => product._id == action.payload._id
+      );
+      state.favoriteData = state.favoriteData.filter(
+        (product: ProductType) => product._id !== existingProduct!._id
+      );
+    },
+    resetFavorite: (state) => {
+      state.favoriteData = [];
     },
   },
 });

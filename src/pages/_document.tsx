@@ -7,7 +7,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.png" />
         <title>Naxt Amazone</title>
       </Head>
-      <body className="antialiased box-border">
+      <body className="antialiased">
         <Main />
         <NextScript />
       </body>

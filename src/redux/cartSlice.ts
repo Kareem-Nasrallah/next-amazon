@@ -3,12 +3,10 @@ import { ProductCartType } from "../../type";
 
 interface initialStateTyp {
   cartProducts: ProductCartType[];
-  allProducts: ProductCartType[];
 }
 
 const initialState: initialStateTyp = {
   cartProducts: [],
-  allProducts: [],
 };
 
 const cartSlice = createSlice({

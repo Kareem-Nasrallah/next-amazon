@@ -2,7 +2,6 @@ import Image from "next/image";
 import logo from "../../images/logo.png";
 import cartIcon from "../../images/cartIcon.png";
 import { SlLocationPin } from "react-icons/sl";
-import { HiOutlineSearch } from "react-icons/hi";
 import { BiCaretDown } from "react-icons/bi";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +9,9 @@ import { stateType } from "../../../type";
 import { useSession, signIn } from "next-auth/react";
 import { useEffect } from "react";
 import { userActions } from "@/redux/userSlice";
+import SearchBar from "./SearchBar";
+import { FaHeart } from "react-icons/fa";
+import { HiShoppingCart } from "react-icons/hi";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -54,29 +56,32 @@ const Header = () => {
         <SlLocationPin />
         <div className="text-xs">
           <p className="text-gray-300">Deliver to</p>
-          <p className="font-bold">USA</p>
+          <p className="font-bold">EGY</p>
         </div>
       </div>
 
       {/* search */}
-      <div className={"p-0.5 relative h-10 flex-1 hidden md:inline-flex"}>
-        <input
-          type="text"
-          className="w-full rounded-md h-10 py-1 px-2 text-base text-black border-[3px] border-transparent outline-none placeholder:text-sm focus-visible:border-amazon_yellow"
-          placeholder="search next-amazon products"
-        />
-        <span className="absolute w-12 h-10 bg-amazon_yellow  right-0 flex items-center justify-center text-black text-2xl rounded-tr-md rounded-br-md">
-          <HiOutlineSearch />
-        </span>
-      </div>
+      <SearchBar />
 
       {/* Signin */}
       {session ? (
         <div className="text-xs flex items-center px-2 border border-transparent hover:border-white cursor-pointer h-[70%] gap-1 duration-300">
-          <img src={user.image!} alt="User Image" className="w-8 h-8 rounded-full object-cover" />
+          <img
+            src={user.image!}
+            alt="User Image"
+            className="w-8 h-8 rounded-full object-cover"
+          />
           <div className="text-gray-100 flex flex-col justify-center ">
-            <p className="text-white font-bold">{user.name}</p>
-            <p>{user.email}</p>
+            <p className=" text-white font-bold hidden mdl:block">
+              {user.name}
+            </p>
+            <p className="text-white font-bold hidden mdl:hidden sml:block">
+              {user.name?.split(" ")[0]}
+            </p>
+            <p className="hidden lg:block">{user.email}</p>
+            <p className="hidden lg:hidden sml:block">
+              {user.email?.substring(0, 10)}...
+            </p>
           </div>
         </div>
       ) : (
@@ -95,7 +100,19 @@ const Header = () => {
       )}
 
       {/* Favorite */}
-      <div className="relative text-xs text-gray-100 flex flex-col justify-center px-2  border border-transparent hover:border-white cursor-pointer h-[70%] duration-300">
+      <Link
+        href={"./favorite"}
+        className="fixed text-5xl text-amazon_light xl:hidden bottom-4 right-4"
+      >
+        <p className="absolute top-[45%] right-[50%] translate-x-[50%] -translate-y-[50%] text-amazon_yellow text-xl">
+          {favorite.favoriteData.length}
+        </p>
+        <FaHeart />
+      </Link>
+      <Link
+        href={"./favorite"}
+        className="relative text-xs text-gray-100 hidden xl:flex flex-col justify-center px-2  border border-transparent hover:border-white cursor-pointer h-[70%] duration-300"
+      >
         <p>Marked</p>
         <p className="text-white font-bold">& Favorite</p>
         {favorite.favoriteData?.length === 0 ? (
@@ -105,12 +122,21 @@ const Header = () => {
             {favorite.favoriteData?.length}
           </span>
         )}
-      </div>
+      </Link>
 
       {/* cart */}
       <Link
         href={"/cart"}
-        className="flex items-center cursor-pointer text-xs duration-300 h-[70%] border border-transparent py-1 px-2 gap-1 hover:border-white relative"
+        className="fixed text-6xl text-amazon_light mdl:hidden bottom-16 right-3"
+      >
+        <p className="absolute top-[33%] right-[50%] translate-x-[50%] -translate-y-[50%] text-amazon_yellow text-xl">
+          {favorite.favoriteData.length}
+        </p>
+        <HiShoppingCart />
+      </Link>
+      <Link
+        href={"/cart"}
+        className="hidden mdl:flex items-center cursor-pointer text-xs duration-300 h-[70%] border border-transparent py-1 px-2 gap-1 hover:border-white relative "
       >
         <Image
           className="object-cover"

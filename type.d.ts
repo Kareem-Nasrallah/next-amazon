@@ -26,7 +26,6 @@ export interface stateType {
   store: {
     cart: {
       cartProducts: ProductCartType[];
-      allProducts: [];
     };
     favorite: { favoriteData: ProductType[] };
     user: {
@@ -34,5 +33,6 @@ export interface stateType {
       email: undefined | null | string;
       image: undefined | null | string;
     };
+    allProducts: { allProducts: [] | ProductType[] };
   };
 }

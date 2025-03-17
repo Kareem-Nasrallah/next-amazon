@@ -9,7 +9,7 @@ import { cartActions } from "@/redux/cartSlice";
 const CartProduct = ({ product }: { product: ProductCartType }) => {
   const dispatch = useDispatch();
   return (
-    <div className="py-4 bg-gray-100 rounded-lg flex items-start gap-4">
+    <div className="py-2 bg-gray-100 rounded-lg flex flex-col md:flex-row items-center gap-4">
       <Image
         src={product.image}
         alt={product.title + "'s photo"}
@@ -26,7 +26,7 @@ const CartProduct = ({ product }: { product: ProductCartType }) => {
           <p className="text-sm font-semibold text-gray-600">
             Unit Price{" "}
             <span className="font-semibold text-amazon_blue">
-              ${product.price.toFixed(2)}
+              ${Number(product.price!).toFixed(2)}
             </span>
           </p>
           <div className="flex items-center gap-6">
@@ -53,9 +53,13 @@ const CartProduct = ({ product }: { product: ProductCartType }) => {
             >
               <IoMdClose className="mt-0.5" /> <p>remove</p>
             </div>
+
+            <div className="text-lg font-semibold text-amazon_blue sml:hidden block ms-auto">
+              ${(product.price * product.quantity).toFixed(2)}
+            </div>
           </div>
         </div>
-        <div className="text-lg font-semibold text-amazon_blue">
+        <div className="text-lg font-semibold text-amazon_blue hidden sml:block">
           ${(product.price * product.quantity).toFixed(2)}
         </div>
       </div>

@@ -21,7 +21,7 @@ const BottomHeader = () => {
         <LuMenu className="text-xl" /> All
       </p>
       <p className="cursor-pointer h-8 border items-center hidden md:inline-flex border-transparent px-2 hover:border-white duration-300">
-        Today Deais
+        Todays Deais
       </p>
       <p className="cursor-pointer h-8 border items-center  hidden md:inline-flex border-transparent px-2 hover:border-white duration-300">
         Customer Service
