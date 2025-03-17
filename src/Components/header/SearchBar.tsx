@@ -6,13 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const SearchBar = () => {
-  interface AllProductType {
-    products: [] | ProductType[];
-  }
-
   const [searchText, setSearchText] = useState("");
-  const [products, setProducts] = useState<[] | ProductType[]>([]);
-  const allProducts = useSelector<stateType>(
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const allProducts = useSelector<stateType, ProductType[]>(
     (store) => store.store.allProducts.allProducts
   );
 

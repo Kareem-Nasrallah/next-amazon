@@ -1,14 +1,17 @@
-import Banner from "@/Components/Banner";
-import Products from "@/Components/Products";
+import Banner from "@/Components/Home/Banner";
+import Products from "@/Components/Home/Products";
 import { ProductType } from "../../type";
+import Head from "next/head";
 
 interface PropsType {
   productData: ProductType[];
 }
 export default function Home({ productData }: PropsType) {
-
   return (
     <>
+      <Head>
+        <title>Naxt Amazone</title>
+      </Head>
       <main>
         <div className="max-w-screen-2xl mx-auto">
           <Banner />

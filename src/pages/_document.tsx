@@ -5,7 +5,6 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.png" />
-        <title>Naxt Amazone</title>
       </Head>
       <body className="antialiased">
         <Main />

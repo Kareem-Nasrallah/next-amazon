@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductType } from "../../type";
+import { ProductType } from "../../../type";
 import { FaHeart } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi";
 import { cartActions } from "@/redux/cartSlice";

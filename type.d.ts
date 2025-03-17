@@ -9,6 +9,18 @@ export interface ProductType {
   title: string;
   _id: number;
 }
+export interface ProductQueryType {
+  brand: string;
+  category: string;
+  description: string;
+  image: string;
+  isNew: string;
+  oldPrice: string;
+  price: string;
+  title: string;
+  _id: string;
+
+}
 export interface ProductCartType {
   brand: string;
   category: string;
@@ -33,6 +45,6 @@ export interface stateType {
       email: undefined | null | string;
       image: undefined | null | string;
     };
-    allProducts: { allProducts: [] | ProductType[] };
+    allProducts: { allProducts: ProductType[] };
   };
 }

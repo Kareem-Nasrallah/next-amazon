@@ -33,7 +33,7 @@ const Header = () => {
         })
       );
     }
-  }, [session]);
+  }, [session, dispatch]);
 
   return (
     <div className="px-4 h-20 bg-amazon_blue sticky top-0 z-50 text-lightText flex justify-between items-center gap-2 mdl:gap-5">
@@ -66,7 +66,9 @@ const Header = () => {
       {/* Signin */}
       {session ? (
         <div className="text-xs flex items-center px-2 border border-transparent hover:border-white cursor-pointer h-[70%] gap-1 duration-300">
-          <img
+          <Image
+            width={35}
+            height={35}
             src={user.image!}
             alt="User Image"
             className="w-8 h-8 rounded-full object-cover"
@@ -105,7 +107,7 @@ const Header = () => {
         className="fixed text-5xl text-amazon_light xl:hidden bottom-4 right-4"
       >
         <p className="absolute top-[45%] right-[50%] translate-x-[50%] -translate-y-[50%] text-amazon_yellow text-xl">
-          {favorite.favoriteData.length}
+          {favorite.favoriteData?.length}
         </p>
         <FaHeart />
       </Link>
@@ -130,7 +132,7 @@ const Header = () => {
         className="fixed text-6xl text-amazon_light mdl:hidden bottom-16 right-3"
       >
         <p className="absolute top-[33%] right-[50%] translate-x-[50%] -translate-y-[50%] text-amazon_yellow text-xl">
-          {favorite.favoriteData.length}
+          {favorite.favoriteData?.length}
         </p>
         <HiShoppingCart />
       </Link>

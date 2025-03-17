@@ -17,17 +17,21 @@ const cartSlice = createSlice({
       const existingProduct = state.cartProducts.find(
         (x: ProductCartType) => x._id == action.payload._id
       );
-      existingProduct
-        ? existingProduct.quantity++
-        : state.cartProducts.push(action.payload);
+      if (existingProduct) {
+        existingProduct.quantity++;
+      } else {
+        state.cartProducts.push(action.payload);
+      }
     },
     decreaseQuantity: (state, action: PayloadAction<ProductCartType>) => {
       const existingProduct = state.cartProducts.find(
         (x: ProductCartType) => x._id == action.payload._id
       );
-      existingProduct?.quantity == 1
-        ? (existingProduct.quantity = 1)
-        : existingProduct!.quantity--;
+      if (existingProduct?.quantity == 1) {
+        existingProduct.quantity = 1;
+      } else {
+        existingProduct!.quantity--;
+      }
     },
     deleteProduct: (state, action: PayloadAction<ProductCartType>) => {
       const existingProduct = state.cartProducts.find(

@@ -1,7 +1,7 @@
 import React from "react";
 import { SiMediamarkt } from "react-icons/si";
 import { useSelector } from "react-redux";
-import { stateType } from "../../type";
+import { stateType } from "../../../type";
 
 const CartPayment = () => {
   const { cart, user } = useSelector((state: stateType) => state.store);

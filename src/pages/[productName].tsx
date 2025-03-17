@@ -3,18 +3,50 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "@/redux/cartSlice";
-import CartAndFavIcon from "@/Components/CartAndFavIcon";
+import CartAndFavIcon from "@/Components/Home/CartAndFavIcon";
 import { PulseLoader } from "react-spinners";
 
-const ProductPage: React.FC = () => {
+const ProductPage = () => {
   const router = useRouter();
-  const [product, setProduct] = useState<any>({});
+  const [product, setProduct] = useState<{
+    brand: string;
+    category: string;
+    description: string;
+    image: string;
+    isNew: boolean;
+    oldPrice: number;
+    price: number;
+    title: string;
+    _id: number;
+  }>({
+    brand: "",
+    category: "",
+    description: "",
+    image: "",
+    isNew: false,
+    oldPrice: NaN,
+    price: NaN,
+    title: "",
+    _id: NaN,
+  });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
-    setProduct(router.query);
+    console.log(router.query);
+    const isNew = () => "true" == router.query.isNew;
+    setProduct({
+      brand: `${router.query.brand}`,
+      category: `${router.query.category}`,
+      description: `${router.query.description}`,
+      image: `${router.query.image}`,
+      isNew: isNew(),
+      oldPrice: Number(router.query.oldPrice),
+      price: Number(router.query.price),
+      title: `${router.query.title}`,
+      _id: Number(router.query._id),
+    });
   }, [router.query]);
 
   return (
@@ -50,7 +82,9 @@ const ProductPage: React.FC = () => {
                 <span className="text-amazon_blue text-lg">
                   ${Number(product.price).toFixed(2)}{" "}
                 </span>
-                <del className="ml-1">${Number(product.oldPrice).toFixed(2)}</del>
+                <del className="ml-1">
+                  ${Number(product.oldPrice).toFixed(2)}
+                </del>
               </p>
               <p className="text-sm text-gray-700">
                 You saved: ${(+product.oldPrice! - +product.price!).toFixed(2)}

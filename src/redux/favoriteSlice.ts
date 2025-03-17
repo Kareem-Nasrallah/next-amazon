@@ -17,7 +17,9 @@ const favoriteSlice = createSlice({
       const existingProduct = state.favoriteData.find(
         (x: ProductType) => x._id == action.payload._id
       );
-      !existingProduct && state.favoriteData.push(action.payload);
+      if (!existingProduct) {
+        state.favoriteData.push(action.payload);
+      }
     },
     removeFavProduct: (state, action: PayloadAction<ProductType>) => {
       const existingProduct = state.favoriteData.find(
