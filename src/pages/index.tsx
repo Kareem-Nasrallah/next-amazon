@@ -1,5 +1,5 @@
-import Banner from "@/Components/Home/Banner";
-import Products from "@/Components/Home/Products";
+import Banner from "@/components/Home/Banner";
+import Products from "@/components/Home/Products";
 import { ProductType } from "../../type";
 import Head from "next/head";
 

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "@/redux/cartSlice";
-import CartAndFavIcon from "@/Components/Home/CartAndFavIcon";
+import CartAndFavIcon from "@/components/Home/CartAndFavIcon";
 import { PulseLoader } from "react-spinners";
 
 const ProductPage = () => {

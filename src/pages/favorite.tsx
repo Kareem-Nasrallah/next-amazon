@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, stateType } from "../../type";
-import FavoriteProduct from "@/Components/FavoriteProduct";
+import FavoriteProduct from "@/components/FavoriteProduct";
 import { favoriteActions } from "@/redux/favoriteSlice";
 import Head from "next/head";
 
@@ -23,9 +23,9 @@ const FavoritePage = () => {
 
   return (
     <>
-    <Head>
-      <title>Favorite List</title>
-    </Head>
+      <Head>
+        <title>Favorite List</title>
+      </Head>
       <div className="max-w-screen-xl mx-auto px-6 gap-10 py-4 ">
         {favoriteProducts?.length > 0 ? (
           <div className="bg-white p-4 rounded-lg">

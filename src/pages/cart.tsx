@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductCartType, stateType } from "../../type";
 import Link from "next/link";
-import CartProduct from "@/Components/cart/CartProduct";
+import CartProduct from "@/components/cart/CartProduct";
 import { cartActions } from "@/redux/cartSlice";
-import CartPayment from "@/Components/cart/CartPayment";
+import CartPayment from "@/components/cart/CartPayment";
 import Head from "next/head";
 
 const Cart = () => {
@@ -22,9 +22,9 @@ const Cart = () => {
 
   return (
     <>
-    <Head>
-      <title>Cart</title>
-    </Head>
+      <Head>
+        <title>Cart</title>
+      </Head>
       <div className="max-w-screen-2xl mx-auto px-6 grid gap-10 py-4 grid-cols-[1fr_1fr_1fr_1fr_200px] xl:grid-cols-[1fr_1fr_1fr_1fr_300px] ">
         {cartProducts.length > 0 ? (
           <>

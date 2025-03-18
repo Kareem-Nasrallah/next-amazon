@@ -1,4 +1,4 @@
-import RootLayout from "@/Components/RootLayout";
+import RootLayout from "@/components/RootLayout";
 import { persistor, store } from "@/redux/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
