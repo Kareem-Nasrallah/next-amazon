@@ -16,8 +16,6 @@ import { HiShoppingCart } from "react-icons/hi";
 const Header = () => {
   const { data: session } = useSession();
 
-  console.log(session);
-
   const { cart, favorite, user } = useSelector(
     (allStoreData: stateType) => allStoreData.store
   );

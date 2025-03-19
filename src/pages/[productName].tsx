@@ -34,7 +34,6 @@ const ProductPage = () => {
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
-    console.log(router.query);
     const isNew = () => "true" == router.query.isNew;
     setProduct({
       brand: `${router.query.brand}`,
